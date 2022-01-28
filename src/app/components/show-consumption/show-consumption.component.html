@@ -1,0 +1,22 @@
+<hr />
+<h3>
+  Show consumption <small><a (click)="show = !show">Show / Hide</a></small>
+</h3>
+<form #f="ngForm" *ngIf="show">
+  <app-node-selector (selectChange)="nodeId = $event"></app-node-selector>
+  <!-- <input
+    type="text"
+    name="nodeId"
+    ngModel="env-douglas-dev"
+    placeholder="Node ID"
+  /> -->
+  <button (click)="getResults(f.value)">Show</button>
+
+  <app-render-node-consumption
+    [consumption]="nodeConsumption"
+  ></app-render-node-consumption>
+
+  <app-render-allocations-2 [items]="allocs"></app-render-allocations-2>
+
+  <app-render-allocations [items]="grants"></app-render-allocations>
+</form>

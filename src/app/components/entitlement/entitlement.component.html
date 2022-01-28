@@ -1,0 +1,216 @@
+<div>
+  <div
+    [class.name-container]="true"
+    [class.has-children]="!!node.children?.length"
+  >
+    <div class="name">{{ node.id }}</div>
+    <div class="skus">
+      <table>
+        <tr>
+          <td colspan="3" class="ft-group">Host Monitoring</td>
+        </tr>
+        <tr>
+          <td>HostMonitoring</td>
+          <td>
+            <span *ngIf="node.features.HostMonitoring" class="enabled">✓</span>
+            <span *ngIf="!node.features.HostMonitoring" class="disabled"
+              >✗</span
+            >
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              title="Manual enforcement"
+              [checked]="node.manualSettingsForFeatures.HostMonitoring"
+              (change)="
+                node.manualSettingsForFeatures.HostMonitoring =
+                  !node.manualSettingsForFeatures.HostMonitoring
+              "
+            />
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3" class="ft-group">Digital Experience Monitoring</td>
+        </tr>
+        <tr>
+          <td>WebSessions</td>
+          <td>
+            <span *ngIf="node.features.WebSessions" class="enabled">✓</span>
+            <span *ngIf="!node.features.WebSessions" class="disabled">✗</span>
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              title="Manual enforcement"
+              [checked]="node.manualSettingsForFeatures.WebSessions"
+              (change)="
+                node.manualSettingsForFeatures.WebSessions =
+                  !node.manualSettingsForFeatures.WebSessions
+              "
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>MobileSessions</td>
+          <td>
+            <span *ngIf="node.features.MobileSessions" class="enabled">✓</span>
+            <span *ngIf="!node.features.MobileSessions" class="disabled"
+              >✗</span
+            >
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              title="Manual enforcement"
+              [checked]="node.manualSettingsForFeatures.MobileSessions"
+              (change)="
+                node.manualSettingsForFeatures.MobileSessions =
+                  !node.manualSettingsForFeatures.MobileSessions
+              "
+            />
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3" class="ft-group">David Data Units</td>
+        </tr>
+        <tr>
+          <td>Metrics</td>
+          <td>
+            <span *ngIf="node.features.Metrics" class="enabled">✓</span>
+            <span *ngIf="!node.features.Metrics" class="disabled">✗</span>
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              title="Manual enforcement"
+              [checked]="node.manualSettingsForFeatures.Metrics"
+              (change)="
+                node.manualSettingsForFeatures.Metrics =
+                  !node.manualSettingsForFeatures.Metrics
+              "
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Logs</td>
+          <td>
+            <span *ngIf="node.features.Logs" class="enabled">✓</span>
+            <span *ngIf="!node.features.Logs" class="disabled">✗</span>
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              title="Manual enforcement"
+              [checked]="node.manualSettingsForFeatures.Logs"
+              (change)="
+                node.manualSettingsForFeatures.Logs =
+                  !node.manualSettingsForFeatures.Logs
+              "
+            />
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3" class="ft-group">Application Security</td>
+        </tr>
+        <tr>
+          <td>VulnerabilityDetections</td>
+          <td>
+            <span *ngIf="node.features.VulnerabilityDetections" class="enabled"
+              >✓</span
+            >
+            <span
+              *ngIf="!node.features.VulnerabilityDetections"
+              class="disabled"
+              >✗</span
+            >
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              title="Manual enforcement"
+              [checked]="node.manualSettingsForFeatures.VulnerabilityDetections"
+              (change)="
+                node.manualSettingsForFeatures.VulnerabilityDetections =
+                  !node.manualSettingsForFeatures.VulnerabilityDetections
+              "
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>RASP</td>
+          <td>
+            <span *ngIf="node.features.RASP" class="enabled">✓</span>
+            <span *ngIf="!node.features.RASP" class="disabled">✗</span>
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              title="Manual enforcement"
+              [checked]="node.manualSettingsForFeatures.RASP"
+              (change)="
+                node.manualSettingsForFeatures.RASP =
+                  !node.manualSettingsForFeatures.RASP
+              "
+            />
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3" class="ft-group">Cloud Automation</td>
+        </tr>
+        <tr>
+          <td>CloudAutomationFt1</td>
+          <td>
+            <span *ngIf="node.features.CloudAutomationFt1" class="enabled"
+              >✓</span
+            >
+            <span *ngIf="!node.features.CloudAutomationFt1" class="disabled"
+              >✗</span
+            >
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              title="Manual enforcement"
+              [checked]="node.manualSettingsForFeatures.CloudAutomationFt1"
+              (change)="
+                node.manualSettingsForFeatures.CloudAutomationFt1 =
+                  !node.manualSettingsForFeatures.CloudAutomationFt1
+              "
+            />
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3" class="ft-group">3rd Gen</td>
+        </tr>
+        <tr>
+          <td>DeusComputationFt1</td>
+          <td>
+            <span *ngIf="node.features.DeusComputationFt1" class="enabled"
+              >✓</span
+            >
+            <span *ngIf="!node.features.DeusComputationFt1" class="disabled"
+              >✗</span
+            >
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              title="Manual enforcement"
+              [checked]="node.manualSettingsForFeatures.DeusComputationFt1"
+              (change)="
+                node.manualSettingsForFeatures.DeusComputationFt1 =
+                  !node.manualSettingsForFeatures.DeusComputationFt1
+              "
+            />
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div *ngIf="node.children" class="children">
+    <ng-container *ngFor="let n2 of node.children">
+      <app-entitlement [node]="n2"> </app-entitlement>
+    </ng-container>
+  </div>
+</div>

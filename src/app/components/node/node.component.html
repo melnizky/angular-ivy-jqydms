@@ -1,0 +1,54 @@
+<div>
+  <div
+    [class.name-container]="true"
+    [class.has-children]="!!node.children?.length"
+  >
+    <div class="name">
+      {{ node.id }}
+      <a
+        title="Show / hide allocations"
+        (click)="showAllocations = !showAllocations"
+        >👁</a
+      >
+    </div>
+    <div class="skus" *ngIf="showAllocations">
+      <table>
+        <tr *ngFor="let i of grants" (click)="log(i)">
+          <td>
+            {{ i.remainingAmount | makeNice: 1 }} / {{ i.amount | makeNice: 1 }}
+          </td>
+          <td>{{ i.sku }}</td>
+          <td>{{ i.type }}</td>
+          <td>{{ i.from | date }} - {{ i.to | date }}</td>
+          <td>
+            <a
+              *ngIf="i.consumption.length === 0"
+              title="Delete grant"
+              class="del"
+              (click)="removeGrant(i)"
+              >✗</a
+            >
+          </td>
+        </tr>
+
+        <tr *ngFor="let a of allocs">
+          <td colspan="4">
+            {{ a.remaining | makeNice: 1 }} / {{ a.amount | makeNice: 1 }}
+            {{ a.sku }} ({{ a.type }})
+          </td>
+          <td>
+            <a title="Delete allocation" class="del" (click)="removeAlloc(a)"
+              >✗</a
+            >
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div *ngIf="node.children" class="children">
+    <ng-container *ngFor="let n2 of node.children">
+      <app-node [node]="n2" [contractId]="contractId"> </app-node>
+    </ng-container>
+  </div>
+</div>

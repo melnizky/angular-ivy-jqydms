@@ -1,0 +1,47 @@
+<hr />
+<h3>
+  Get subscriptions and allocations for SKU on specific node in a specific
+  timeframe
+  <small><a (click)="show = !show">Show / Hide</a></small>
+</h3>
+<form #f="ngForm" *ngIf="show">
+  <app-node-selector (selectChange)="nodeId = $event"></app-node-selector>
+  <!-- <input type="text" ngModel="account-sap" name="nodeId" /> -->
+  <input type="text" ngModel="2022-01-01" name="from" />
+  <input type="text" ngModel="2022-01-31" name="to" />
+  <select name="sku" ngModel="HUH">
+    <option value="HUH">HUH</option>
+    <option value="DEM">DEM</option>
+    <option value="DDU">DDU</option>
+    <option value="ASU">ASU</option>
+    <option value="CAU">CAU</option>
+    <option value="DCU">DCU</option>
+  </select>
+  <select name="feature" ngModel="">
+    <option value="">&nbsp;</option>
+    <option value="HostMonitoring">Host Monitoring</option>
+    <option value="WebSessions">Web Sessions</option>
+    <option value="MobileSessions">Mobile Sessions</option>
+    <option value="Metrics">Metrics</option>
+    <option value="Logs">Logs</option>
+    <option value="VulnerabilityDetections">Vulnerability Detections</option>
+    <option value="RASP">RASP</option>
+    <option value="CloudAutomationFt1">CloudAutomationFt1</option>
+    <option value="DeusComputationFt1">DeusComputationFt1</option>
+  </select>
+  <button (click)="search(f.value)">Search</button>
+  <button (click)="grants = []; overallRemainingAmount = 0">Reset</button>
+
+  <div>
+    <pre>
+Overall remaining subscription amount in hierarchy: {{
+        overallRemainingAmount | makeNice: 1
+      }} ({{overallRemainingAmount}})
+Overall remaining limit in hierarchy: {{
+        minRemainingAllocationAmount | makeNice: 1
+      }} ({{minRemainingAllocationAmount}})
+<!-- Booked reservations in hierarchy: {{ bookedReservations | makeNice: 1 }} -->
+--------------------------
+{{ grants | json }}</pre>
+  </div>
+</form>

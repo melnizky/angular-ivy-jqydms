@@ -1,0 +1,29 @@
+<br /><br />
+<h4>Consumption on allocation level</h4>
+<table>
+  <tr>
+    <th>Amount</th>
+    <th>SKU</th>
+    <th>Type</th>
+    <th>From - To</th>
+  </tr>
+  <ng-container *ngFor="let i of items">
+    <tr class="allocitem">
+      <td>{{ i.remaining | makeNice: 2 }} / {{ i.amount | makeNice: 2 }}</td>
+      <td>{{ i.sku }}</td>
+      <td>{{ i.type }}</td>
+      <td>{{ i.from | date }} - {{ i.to | date }}</td>
+    </tr>
+    <tr class="consumption" *ngIf="i.consumption.length === 0">
+      <td colspan="2"></td>
+      <td colspan="4">No consumption yet</td>
+    </tr>
+    <tr class="consumption" *ngFor="let c of i.consumption">
+      <td colspan="2"></td>
+      <td>{{ c.amount | makeNice: 2 }}</td>
+      <td>{{ c.sku }}</td>
+      <td></td>
+      <td>{{ c.from | date }} - {{ c.to | date }}</td>
+    </tr>
+  </ng-container>
+</table>

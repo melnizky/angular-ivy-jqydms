@@ -1,0 +1,13 @@
+<hr />
+<h3>
+  Show subscriptions <small><a (click)="show = !show">Show / Hide</a></small>
+</h3>
+<form #f="ngForm" *ngIf="show">
+  <!-- <input
+    type="text"
+    name="nodeId"
+    ngModel="env-douglas-dev"
+    placeholder="Node ID"
+  /> -->
+  <button (click)="getResults(f.value)">Show</button>
+</form>

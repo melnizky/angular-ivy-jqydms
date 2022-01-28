@@ -1,0 +1,9 @@
+th,
+td {
+  padding: 0 0.5em;
+  white-space: nowrap;
+}
+
+th {
+  border-bottom: 1px solid black;
+}

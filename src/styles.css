@@ -1,0 +1,20 @@
+/* Add application styles & imports to this file! */
+
+a {
+  cursor: pointer;
+}
+
+.del,
+.del:hover {
+  color: red;
+}
+
+.enabled {
+  color: green;
+  font-weight: bold;
+}
+
+.disabled {
+  color: red;
+  font-weight: bold;
+}

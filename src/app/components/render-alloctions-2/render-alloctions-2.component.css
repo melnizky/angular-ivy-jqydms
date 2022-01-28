@@ -1,0 +1,18 @@
+td,
+th {
+  padding: 0 0.5em;
+  text-align: right;
+  white-space: nowrap;
+}
+
+tr.allocitem {
+  border-bottom: 1px solid black;
+}
+
+th {
+  border-bottom: 2px solid black;
+}
+
+tr.consumption td {
+  padding-bottom: 0.5em;
+}

@@ -1,0 +1,37 @@
+<div>
+  <div
+    [class.name-container]="true"
+    [class.has-children]="!!node.children?.length"
+  >
+    <div class="name">
+      {{ node.id }}
+      <a
+        title="Delete this node and all nodes below"
+        class="del"
+        (click)="delete(node)"
+        >✗</a
+      >
+    </div>
+    <div style="font-size: 11px">
+      <form #f="ngForm">
+        <input ngModel name="nodeId" type="text" placeholder="Node ID" />
+        <select name="type" ngModel>
+          <option value="account">Account</option>
+          <option value="cluster">Cluster</option>
+          <option value="environment">Environment</option>
+          <option value="keptn">Keptn</option>
+          <option value="deus">DEUS</option>
+          <option value="grouper">Grouper</option>
+        </select>
+        <button (click)="add(node, f.value, false)">Add child</button>
+        <button (click)="add(node, f.value, true)">Add parent</button>
+      </form>
+    </div>
+  </div>
+
+  <div *ngIf="node.children" class="children">
+    <ng-container *ngFor="let n2 of node.children">
+      <app-simple-node [node]="n2"> </app-simple-node>
+    </ng-container>
+  </div>
+</div>

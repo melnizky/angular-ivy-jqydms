@@ -1,0 +1,16 @@
+<br /><br />
+<h4>Consumption on node level</h4>
+<table>
+  <tr>
+    <th>Auto ID</th>
+    <th>Amount</th>
+    <th>SKU</th>
+    <th>From - To</th>
+  </tr>
+  <tr *ngFor="let c of consumption">
+    <td>{{ c.id }}</td>
+    <td>{{ c.amount | makeNice: 2 }}</td>
+    <td>{{ c.sku }}</td>
+    <td>{{ c.from | date }} - {{ c.to | date }}</td>
+  </tr>
+</table>

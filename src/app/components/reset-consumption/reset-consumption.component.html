@@ -1,0 +1,12 @@
+<hr />
+<h3>
+  Reset consumption <small><a (click)="show = !show">Show / Hide</a></small>
+</h3>
+<div *ngIf="show">
+  <p>
+    <strong>Note: </strong> This will delete all consumption that has occurred
+    so far. It also resets the remaining amount to the amount. It does, however,
+    not delete any allocations or anything.
+  </p>
+  <button (click)="reset()">Reset</button>
+</div>

@@ -1,0 +1,54 @@
+<hr />
+<h3>
+  View feature entitlement
+  <small><a (click)="show = !show">Show / Hide</a></small>
+</h3>
+<div *ngIf="show">
+  <form #f="ngForm">
+    View entitlement on:
+    <input
+      type="text"
+      name="when"
+      [ngModel]="today | date: 'yyyy-MM-dd'"
+      placeholder="yyyy-MM-dd"
+    />
+    <button (click)="entitle(f.value)">
+      Refresh (= feels like triggering polling manually ;-))
+    </button>
+    <br />
+    <p>
+      <br />
+      Generally, you need to hit the "Refresh" button above manually to
+      re-evaluate the entitlement on all levels. <br />
+      This is not happening automatically / regularly so that it's easier to
+      follow what's happening when you change stuff.
+    </p>
+    <br />
+    <table>
+      <tr>
+        <th colspan="2">Legend</th>
+      </tr>
+      <tr>
+        <td><input type="checkbox" /></td>
+        <td>
+          Turn a feature on or off for the respective node and the ones below
+        </td>
+      </tr>
+      <tr>
+        <td><span class="enabled">✓</span></td>
+        <td>
+          Feature is turned on manually and the allocation is not used up yet
+        </td>
+      </tr>
+      <tr>
+        <td><span class="disabled">✗</span></td>
+        <td>
+          Feature is either manually turned off, or there's no allocation of the
+          SKU the features is billed with in the hierarchy of the node or a
+          limit somewhere in the hierarchy for this node was reached.
+        </td>
+      </tr>
+    </table>
+  </form>
+  <app-entitlement [node]="node"></app-entitlement>
+</div>

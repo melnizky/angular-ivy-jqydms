@@ -1,0 +1,154 @@
+<hr />
+<h3>
+  Add new subscription and / or allocation
+  <small><a (click)="show = !show">Show / Hide</a></small>
+</h3>
+<div *ngIf="show">
+  <ul>
+    <li>
+      <strong> Subscription: </strong> this is what a customer purchases or more
+      generally gets on a contractual basis (e.g. 200k free DDUs on environment
+      level for SaaS).<br />
+      <u>Special case DPS:</u> if you add a DPS subscription, by default a
+      default rate card ofHUH 0.1, DEM 0.2, DDU 0.3, ASU 0.4, CAU 0.5, DCU 0.6
+      is applied and you can't modify that.<br />
+      <u>Example:</u> if you add consumption of 1mil DEMs and 2mil DDUs then it
+      will consume 800k (= 1mil x 0.2 + 2mil x 0.3) from your DPS budget.
+    </li>
+    <li>
+      <strong>Allocation: </strong> either a limit or reservation. This is what
+      the customer can control and set arbitrarily in his hierarchy. The
+      smallest allocation in the hierarchy for a node is the one that rules at
+      any given time.
+    </li>
+  </ul>
+  <p></p>
+  <form #f1="ngForm">
+    <app-node-selector (selectChange)="nodeId = $event"></app-node-selector>
+    <input type="number" name="amount" ngModel="1000000" placeholder="Amount" />
+    <select
+      name="sku"
+      ngModel="HUH"
+      (change)="loadDefaultFeatures(f1.value.sku)"
+    >
+      <option value="HUH">HUH</option>
+      <option value="DEM">DEM</option>
+      <option value="DDU">DDU</option>
+      <option value="ASU">ASU</option>
+      <option value="CAU">CAU</option>
+      <option value="DCU">DCU</option>
+      <option value="DPS">DPS</option>
+    </select>
+    &nbsp; <strong>Enabled features for this SKU:</strong> &nbsp;<input
+      type="checkbox"
+      name="hostMonitoringEnabled"
+      [(ngModel)]="features.HostMonitoring"
+    />
+    Host Monitoring &nbsp;<input
+      type="checkbox"
+      name="webSessionsEnabled"
+      [(ngModel)]="features.WebSessions"
+    />
+    Web Sessions &nbsp;<input
+      type="checkbox"
+      name="mobileSessionsEnabled"
+      [(ngModel)]="features.MobileSessions"
+    />
+    Mobile Sessions &nbsp;<input
+      type="checkbox"
+      name="metricsEnabled"
+      [(ngModel)]="features.Metrics"
+    />
+    Metrics &nbsp;<input
+      type="checkbox"
+      name="logsEnabled"
+      [(ngModel)]="features.Logs"
+    />
+    Logs &nbsp;<input
+      type="checkbox"
+      name="vulnerabilityDetectionsEnabled"
+      [(ngModel)]="features.VulnerabilityDetections"
+    />
+    Vulnerability Detections &nbsp;<input
+      type="checkbox"
+      name="raspEnabled"
+      [(ngModel)]="features.RASP"
+    />
+    RASP &nbsp;<input
+      type="checkbox"
+      name="cloudAutomationFt1Enabled"
+      [(ngModel)]="features.CloudAutomationFt1"
+    />
+    CloudAutomationFt1 &nbsp;<input
+      type="checkbox"
+      name="deusComputationFt1Enabled"
+      [(ngModel)]="features.DeusComputationFt1"
+    />
+    DeusComputationFt1
+    <br />
+    <input type="text" name="id" placeholder="Alloc ID" ngModel="sap-004-01" />
+    <input
+      type="text"
+      name="from"
+      placeholder="yyyy-MM-dd"
+      ngModel="2022-01-01"
+    />
+    <input
+      type="text"
+      name="to"
+      placeholder="yyyy-MM-dd"
+      ngModel="2022-12-31"
+    />
+    <input type="number" name="prio" placeholder="1,2,3,..." ngModel="2" />
+    <select name="type" ngModel="Paid">
+      <option value="Paid">Paid</option>
+      <option value="Overage">Overage</option>
+      <option value="Free">Free</option>
+    </select>
+    <!-- <input type="checkbox" ngModel name="canBeSplit" /> Can be split? -->
+    <br />
+    <button (click)="add(f1.value)">Add Subscription</button>
+  </form>
+  ---
+  <form #f2="ngForm">
+    <app-node-selector (selectChange)="nodeId = $event"></app-node-selector>
+    <input type="number" name="amount" ngModel="1000000" placeholder="Amount" />
+    <select name="sku" ngModel="HUH">
+      <option value="HUH">HUH</option>
+      <option value="DEM">DEM</option>
+      <option value="DDU">DDU</option>
+      <option value="ASU">ASU</option>
+      <option value="CAU">CAU</option>
+      <option value="DCU">DCU</option>
+    </select>
+    <br />
+    <input
+      type="text"
+      name="from"
+      placeholder="yyyy-MM-dd"
+      ngModel="2020-01-01"
+      readonly
+    />
+    <input
+      type="text"
+      name="to"
+      placeholder="yyyy-MM-dd"
+      ngModel="2030-12-31"
+      readonly
+    />
+    <select name="type" ngModel="Limit">
+      <option value="Limit">Limit</option>
+      <option value="Reservation" disabled>
+        Reservation (disabled) - not supported yet :-)
+      </option>
+    </select>
+    <br />
+    <button (click)="addAllocation(f2.value)">Add Allocation</button>
+  </form>
+
+  <div class="alert-danger" *ngIf="errors.length > 0">
+    <ul>
+      <li *ngFor="let e of errors">{{ e }}</li>
+    </ul>
+  </div>
+</div>

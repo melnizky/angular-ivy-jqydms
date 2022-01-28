@@ -1,0 +1,22 @@
+<div *ngIf="rootNode$ | async as x">
+  <h1>{{ x.node.name }} - {{ x.node.id }}</h1>
+  <form #f="ngForm">
+    Contract filter:
+    <select name="contractId" (change)="contractChange(f.value)" ngModel>
+      <option *ngFor="let c of x.contracts" [value]="c.id">
+        #{{ c.id }}: {{ c.start | date: 'yyyy' }} - {{ c.end | date: 'yyyy' }}
+      </option>
+    </select>
+  </form>
+  <div class="center">
+    <app-node [node]="x.node" [contractId]="contractId"> </app-node>
+  </div>
+  <app-add-alloc-item></app-add-alloc-item>
+  <app-get-valid-alloc-items></app-get-valid-alloc-items>
+  <app-add-consumption></app-add-consumption>
+  <app-show-consumption></app-show-consumption>
+  <app-reset-consumption></app-reset-consumption>
+  <app-view-entitlement [node]="x.node"></app-view-entitlement>
+  <app-modify-account-structure [node]="x.node"></app-modify-account-structure>
+  <app-show-subscriptions></app-show-subscriptions>
+</div>

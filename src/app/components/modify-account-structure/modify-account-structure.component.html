@@ -1,0 +1,17 @@
+<hr />
+<h3>
+  Modify account structure
+  <small><a (click)="show = !show">Show / Hide</a></small>
+</h3>
+<div *ngIf="show">
+  <form #f="ngForm">
+    Preconfigured Accounts:
+    <select ngModel name="account" (change)="selectAccount($event)">
+      <option *ngFor="let a of accounts; let i = index" [value]="i">
+        {{ a.name }} ({{ a.id }})
+      </option>
+    </select>
+  </form>
+
+  <app-simple-node [node]="node"></app-simple-node>
+</div>

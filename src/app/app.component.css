@@ -1,0 +1,8 @@
+p {
+  font-family: Lato;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}
