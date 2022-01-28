@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
+import { HighchartsChartModule } from 'highcharts-angular';
+
 import { AppComponent } from './app.component';
 import { NodeComponent } from './components/node/node.component';
 import { MakeNicePipe } from './make-nice.pipe';
@@ -21,7 +23,7 @@ import { RenderAlloctions2Component } from './components/render-alloctions-2/ren
 import { ShowSubscriptionsComponent } from './components/show-subscriptions/show-subscriptions.component';
 
 @NgModule({
-  imports: [BrowserModule, FormsModule],
+  imports: [BrowserModule, FormsModule, HighchartsChartModule],
   declarations: [
     AppComponent,
     NodeComponent,

@@ -9,5 +9,10 @@
     ngModel="env-douglas-dev"
     placeholder="Node ID"
   /> -->
-  <button (click)="getResults(f.value)">Show</button>
+  <highcharts-chart
+    [Highcharts]="Highcharts"
+    [constructorType]="'ganttChart'"
+    [options]="chartOptions"
+  >
+  </highcharts-chart>
 </form>
