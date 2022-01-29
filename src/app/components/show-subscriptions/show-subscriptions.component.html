@@ -13,6 +13,10 @@
     [Highcharts]="Highcharts"
     [constructorType]="'ganttChart'"
     [options]="chartOptions"
+    [callbackFunction]="chartCallback"
+    [(update)]="updateFlag"
+    [oneToOne]="true"
   >
   </highcharts-chart>
+  <button (click)="updateChart()">Update</button>
 </form>
