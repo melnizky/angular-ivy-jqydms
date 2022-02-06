@@ -48,6 +48,10 @@ export class ShowSubscriptionsComponent implements OnInit, OnDestroy {
    * This method created the data series objects for the GANTT chart (or _should_ do that ...)
    */
   buildDataSeries(node: Node, i: number) {
+    if (i == 0) {
+      this.series = [];
+    }
+
     var data = [];
 
     const name = node.name;
@@ -58,8 +62,14 @@ export class ShowSubscriptionsComponent implements OnInit, OnDestroy {
       for (let g = 0; g < grants.length; g++) {
         var grant = grants[g];
         // get earliest start and latest end date
-        this.earliestStart = (this.earliestStart == 0 || this.earliestStart > grant.from ? grant.from : this.earliestStart);
-        this.latestEnd = (this.latestEnd == 0 || this.latestEnd < grant.to? grant.to : this.latestEnd);
+        this.earliestStart =
+          this.earliestStart == 0 || this.earliestStart > grant.from
+            ? grant.from
+            : this.earliestStart;
+        this.latestEnd =
+          this.latestEnd == 0 || this.latestEnd < grant.to
+            ? grant.to
+            : this.latestEnd;
 
         data.push({
           id: grant.sku + '_' + g,
@@ -72,6 +82,7 @@ export class ShowSubscriptionsComponent implements OnInit, OnDestroy {
         });
       }
     }
+
     this.series.push({
       name: name,
       type: type,
@@ -113,7 +124,7 @@ export class ShowSubscriptionsComponent implements OnInit, OnDestroy {
         text: 'Subscriptions',
       },
       xAxis: {
-        min: this.earliestStart, 
+        min: this.earliestStart,
         max: this.latestEnd,
       },
       yAxis: [
@@ -175,6 +186,10 @@ export class ShowSubscriptionsComponent implements OnInit, OnDestroy {
   updateChart() {
     const self = this,
       chart = this.chart;
+    this.subscriptions.push(
+      rootNode$.subscribe((node) => this.buildDataSeries(node, 0))
+    );
+
     self.updateFlag = true;
   }
 }
